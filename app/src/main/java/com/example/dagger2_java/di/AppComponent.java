@@ -70,9 +70,9 @@ public interface AppComponent extends AndroidInjector<BaseApplication> {
     標註Component和Module提供對象的方法，Dagger2可以通過自定義註解限定註解作用域，
     來管理每個對象實例的生命週期。
 
-    @Qualifier:
+    @Named:
     用來標註方法，當類的類型不足以鑑別一個依賴的時候，我們就可以使用這個註解標示。
     例如：在Android中，我們會需要不同類型的Context，
-    所以我們就可以定義Qualifier註解@ApplicationQualifier和@ActivityQualifier，
+    所以我們就可以定義Named註解@Named("Application")和@Named("Activity")，
     這樣當注入一個Context的時候，我們就可以告訴Dagger2我們想要哪種類型的Context。
  */

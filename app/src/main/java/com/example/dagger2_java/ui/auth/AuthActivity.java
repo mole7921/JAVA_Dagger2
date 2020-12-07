@@ -28,6 +28,8 @@ import com.example.dagger2_java.viewmodels.ViewModelProviderFactory;
 import org.w3c.dom.Text;
 
 import javax.inject.Inject;
+import javax.inject.Named;
+
 import dagger.android.support.DaggerAppCompatActivity;
 
 public class AuthActivity extends DaggerAppCompatActivity implements View.OnClickListener
@@ -49,6 +51,17 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
     @Inject
     RequestManager requestManager;
 
+
+    //比較scope作用域不同
+    @Inject
+    @Named("AuthScopeUser")
+    User user1;
+
+    @Inject
+    @Named("SingletonUser")
+    User user2;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +76,10 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
         setImage();
 
         subscribeObservers();
+
+        //比較記憶體位置後可知Singleton復用,scope則重新產生
+        Log.e(TAG,"onCreate:" + user1);
+        Log.e(TAG,"onCreate:" + user2);
     }
 
     private void subscribeObservers(){

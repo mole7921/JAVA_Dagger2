@@ -9,9 +9,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.dagger2_java.R;
+import com.example.dagger2_java.model.User;
 import com.example.dagger2_java.network.auth.AuthApi;
 import com.example.dagger2_java.util.Constants;
 
+import javax.inject.Named;
+import javax.inject.Qualifier;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -56,6 +59,12 @@ public class AppModule {
        return ContextCompat.getDrawable(application,R.drawable.logo);
    }
 
+    @Singleton
+    @Provides
+    @Named("SingletonUser")
+    static User someUser(){
+        return new User();
+    }
 }
 
 
